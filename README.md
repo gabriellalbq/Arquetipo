@@ -1,1 +1,1 @@
-# Arqu-tipo
+# Arquetipo
