@@ -450,3 +450,21 @@ def imc():
 
     except ValueError:
         print(" - Erro: Digite números válidos usando pontos em vez de vírgula!")
+
+def plano_treino():
+    while True:
+        opcao = exibir_menu()
+        if opcao == '1': adicionar_treino(treinos)
+        elif opcao == '2': visualizar_treino(treinos)
+        elif opcao == '3': editar_treino(treinos)
+        elif opcao == '4': excluir_treino(treinos)
+        elif opcao == '5': exibir_evolucao_pessoal(treinos)
+        elif opcao == '6': sugestoes_personalizadas(treinos)
+        elif opcao == '7': imc(treinos)
+        elif opcao == '8':
+            print("Saindo do sistema. Bom treino!\n")
+            break
+        else: 
+            print("Opção inválida!\n")
+            
+plano_treino()
