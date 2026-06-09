@@ -39,3 +39,25 @@ def cadastrar_exercicio():
         print(f" - {dado_exercicio['Nome']} foi adicionado com sucesso!")
 
     return lista_exercicio
+
+def cadastrar_meta(metas_do_treino):
+    meta = input("\nDigite sua meta: ")
+    objetivo = input("Digite seu objetivo: ")
+    
+    nova_meta = {
+        "Nome": meta,
+        "Objetivo": objetivo,
+        "Progresso": 0
+    }
+    metas_do_treino.append(nova_meta)
+    print("Meta e objetivos cadastrados com sucesso para este treino!")
+
+def listar_metas(metas_do_treino):
+    print("\n- METAS ATUAIS DESTE TREINO:")
+    if not metas_do_treino:
+        print("Nenhuma meta cadastrada para este treino!")
+        return False
+        
+    for i, met in enumerate(metas_do_treino, start=1):
+        print(f"{i}ª Meta: {met['Nome']} | Objetivo: {met['Objetivo']} | Progresso: {met['Progresso']}%")
+    return True
