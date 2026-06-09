@@ -61,3 +61,48 @@ def listar_metas(metas_do_treino):
     for i, met in enumerate(metas_do_treino, start=1):
         print(f"{i}ª Meta: {met['Nome']} | Objetivo: {met['Objetivo']} | Progresso: {met['Progresso']}%")
     return True
+    def atualizar_progresso(metas_do_treino):
+    if not listar_metas(metas_do_treino):
+        return
+    try:
+        opcao_escolhida = int(input("\nEscolha o número da meta que deseja atualizar: ")) - 1
+
+        if 0 <= opcao_escolhida < len(metas_do_treino):
+            while True:
+                novo_progresso = input("Digite o novo progresso (%): ")
+                try:
+                    novo_progresso = int(novo_progresso)
+                    if novo_progresso < 0 or novo_progresso > 100:
+                        print(" - Erro: Digite um valor entre 0 e 100!")
+                        continue
+                    break 
+                except ValueError:
+                    print(" - Erro: Digite apenas números inteiros!")
+            
+            metas_do_treino[opcao_escolhida]["Progresso"] = novo_progresso
+            print(" - Progresso atualizado com sucesso!")
+        else:
+            print(" - Número de meta inválido!")
+            
+    except ValueError:
+        print(" - Entrada inválida! Digite um número.")
+
+def controle_metas(metas_do_treino):
+    while True:
+        print("\n==== CONTROLE DE METAS ====")
+        print("1- Cadastrar Nova Meta")
+        print("2- Listar Metas Existentes")
+        print("3- Atualizar Progresso")
+        print("4- Voltar ao Menu Principal")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            cadastrar_meta(metas_do_treino)
+        elif opcao == "2":
+            listar_metas(metas_do_treino)
+        elif opcao == "3":
+            atualizar_progresso(metas_do_treino)
+        elif opcao == "4":
+            break
+        else:
+            print(" - Opção inválida!")
