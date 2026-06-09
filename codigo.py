@@ -380,3 +380,22 @@ def exibir_evolucao_pessoal(treinos):
     print(f"• Dias ativos com registro no Arquétipor: {len(treinos)} dia(s)")
     
     salvar_treino(treinos)
+
+def sugestoes_personalizadas(treinos):
+    print("\n---💡SUGESTÕES PERSONALIZADAS💡---")
+    if not treinos:
+        print("• Crie o seu primeiro plano de treino para receber sugestões personalizadas!")
+        return
+
+    ultimo_treino = treinos[-1]
+    tipo_treino = ultimo_treino['tipo'].lower()
+    print(f"Analisando seu último treino de ({ultimo_treino['tipo']})... Aqui estão suas dicas:\n")
+
+    if "musculação" in tipo_treino or "funcional" in tipo_treino:
+        sugestao_musculacao = [
+            "• Sugestões de Exercícios: Que tal variar com Supino Reto, Leg Press ou Prancha Abdominal?",
+            "• Divisão Semanal: Como você fez força hoje, amanhã foque em um treino de Cardio para descanso muscular.",
+            "• Tempo de Descanso: Entre as séries de força, descanse de 60 a 90 segundos."
+        ]
+        print(f" - Dica do dia: {random.choice(sugestao_musculacao)}")
+    elif "cardio" in tipo_treino or "aeróbico" in tipo_treino or "emagrecimento" in tipo_treino:
