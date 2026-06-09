@@ -256,3 +256,72 @@ def visualizar_treino(treinos):
             print("Metas vinculadas:")
             for j, met in enumerate(t["metas"], start=1):
                 print(f"  - {j}ª Meta: {met['Nome']} | Objetivo: {met['Objetivo']} | Progresso: {met['Progresso']}%")
+def editar_treino(treinos):
+    visualizar_treino(treinos)
+    if not treinos:
+        return
+    try:
+        num_treino = int(input("\nNúmero do treino para editar: ")) - 1
+        if 0 <= num_treino < len(treinos):
+            print("--- NOVOS DADOS ---\n(use o enter para manter o atual)\n")
+            t = treinos[num_treino]
+            
+            novo_nome = input(f"Novo nome [{t['nome']}]: ") 
+            if novo_nome: t['nome'] = novo_nome
+            
+            novo_tipo = input(f"Novo tipo [{t['tipo']}]: ")
+            if novo_tipo: t['tipo'] = novo_tipo
+            
+            nova_data = input(f"Nova data [{t['data']}]: ")
+            if nova_data: t['data'] = nova_data
+            
+            nova_duracao = input(f"Nova duração [{t['duracao']}]: ")
+            if nova_duracao: t['duracao'] = nova_duracao
+            
+            novo_objetivo = input(f"Novo objetivo [{t['objetivo']}]: ")
+            if novo_objetivo: t['objetivo'] = novo_objetivo
+
+            print("\n--- EDITAR EXERCÍCIOS ---")
+            for ex in t['exercicios']:
+                print(f"\nExercício atual: {ex['Nome']}")
+                novo_ex = input(f"Novo exercício [{ex['Nome']}]: ").capitalize()
+                if novo_ex: ex['Nome'] = novo_ex
+                
+                for tipo in ['Séries', 'Repetições', 'Distância', 'Tempo', 'Detalhes']:
+                    if tipo in ex:
+                        novo_valor = input(f"{tipo} [{ex[tipo]}]: ")
+                        if novo_valor:
+                            ex[tipo] = int(novo_valor) if tipo != 'Detalhes' else novo_valor
+
+            print("\n--- EDITAR META ---")
+            if "metas" in t and len(t["metas"]) > 0:
+                for met in t['metas']:
+                    print(f"\nMeta atual: {met['Nome']}")
+
+                    nova_meta = input(f"Nova meta [{met['Nome']}]: ")
+                    if nova_meta: met['Nome'] = nova_meta
+                    
+                    novo_obj = input(f"Novo objetivo [{met['Objetivo']}]: ")
+                    if novo_obj: met['Objetivo'] = novo_obj
+                    
+                    while True:
+                        novo_prog = input(f"Novo progresso [{met['Progresso']}%]: ")
+                        if not novo_prog:
+                            break 
+                        try:
+                            novo_prog = int(novo_prog)
+                            if novo_prog < 0 or novo_prog > 100:
+                                raise ValueError
+                            met['Progresso'] = novo_prog
+                            break
+                        except ValueError:
+                            print("Erro: Digite apenas números inteiros de 0 a 100!")
+            else:
+                print("Nenhuma meta vinculada a este treino para editar!")
+
+            print("\nTreino e metas atualizados com sucesso!")
+            salvar_treino(treinos)
+        else:
+            print("Treino inválido!")
+    except ValueError:
+        print("Entrada inválida!")
