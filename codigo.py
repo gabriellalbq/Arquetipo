@@ -233,3 +233,26 @@ def adicionar_treino(treinos):
     treinos.append(treino)
     print("\n - Treino adicionado com sucesso!")
     salvar_treino(treinos)
+
+def visualizar_treino(treinos):
+    print("\n--- Lista de Treinos ---")
+    if not treinos:
+        print("Nenhum treino cadastrado!")
+        return
+    for i, t in enumerate(treinos):
+        print(f"\n{i+1}º - {t['nome']} | {t['tipo']} | {t['data']} | {t['duracao']}min | {t['objetivo']}")
+        if len(t["exercicios"]) > 0:
+            print("Exercícios: ")
+            for ex in t['exercicios']:
+                print(f"  - {ex['Nome']}", end="")
+                if "Distância" in ex: print(f" | Distância: {ex['Distância']} km", end="")
+                if "Tempo" in ex: print(f" | Tempo: {ex['Tempo']} min", end="")
+                if "Séries" in ex: print(f" | Séries: {ex['Séries']}", end="")
+                if "Repetições" in ex: print(f" | Repetições: {ex['Repetições']}", end="")
+                if "Detalhes" in ex: print(f" | Detalhes: {ex['Detalhes']}", end="")
+                print() # quebra de linha
+
+        if "metas" in t and len(t["metas"]) > 0:
+            print("Metas vinculadas:")
+            for j, met in enumerate(t["metas"], start=1):
+                print(f"  - {j}ª Meta: {met['Nome']} | Objetivo: {met['Objetivo']} | Progresso: {met['Progresso']}%")
