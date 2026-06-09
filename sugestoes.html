@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestões personalizadas</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="../fotos/logo.png" alt="Logo do trabalho">
+        </div>
+        <nav class="menu">
+            <a href="index.html" class="menu-item">Página Inicial</a>
+            <a href="manual.html" class="menu-item">Manual do Usuário</a>
+        </nav>
+    </header>
+
+    <main class="resumo_site">
+        <h2 class="titulo_resumo_site">Sugestões personalizadas</h2>
+        <p class="texto_resumo_site">
+            Em qual tipo de treino você está focando atualmente? Escolha uma das opções abaixo para receber suas dicas.
+        </p>
+
+        <div class="opcoes-foco">
+            <button class="btn-opcao" onclick="gerarSugestao('musculacao', this)">Musculação / Funcional</button>
+            <button class="btn-opcao" onclick="gerarSugestao('cardio', this)">Cardio / Aeróbico</button>
+            <button class="btn-opcao" onclick="gerarSugestao('corrida', this)">Corrida</button>
+            <button class="btn-opcao" onclick="gerarSugestao('outros', this)">Outros</button>
+        </div>
+
+        <div class="container-evolucao" id="container-dicas" style="display: none;">
+            <table class="tabela-evolucao">
+                <tbody id="lista-sugestoes">
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer_conteudo">
+            <div class="footer_esq">
+                <span class="autor_titulo">Feito por:</span>
+                <div class="autor_linha">
+                    <p>Gabriella de Lima Albuquerque</p>
+                    <a href="mailto:gla3@cesar.com" class="links"><img src="../fotos/gmail.png" alt="Gmail" class="img_gmail"></a>
+                    <a href="https://www.linkedin.com/in/gabriellaalbq/" class="links"><img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail"></a>
+                </div>
+                <div class="autor_linha">
+                    <p>Manuela Brayner Medeiros de Araújo</p>
+                    <a href="mailto:mbma3@cesar.school" class="links"><img src="../fotos/gmail.png" alt="Gmail" class="img_gmail"></a>
+                    <a href="http://www.linkedin.com/in/manuelabraynermedeirosdeara%C3%BAjo" class="links"><img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail"></a>
+                </div>
+                <div class="autor_linha">
+                    <p>Rafaela Dubeux Godoy</p>
+                    <a href="mailto:rdg@cesar.school" class="links"><img src="../fotos/gmail.png" alt="Gmail" class="img_gmail"></a>
+                    <a href="www.linkedin.com/in/rafaela-dubeux-godoy" class="links"><img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail"></a>
+                </div>
+                <div class="autor_linha">
+                    <p>Milena Siqueira Araújo</p>
+                    <a href="mailto:msa4@cesar.school" class="links"><img src="../fotos/gmail.png" alt="Gmail" class="img_gmail"></a>
+                    <a href="https://www.linkedin.com/in/milenasiqueiraaraujo?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="links"><img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail"></a>
+                </div>
+                <div class="autor_linha">
+                    <p>Maria Júlia Oliveira Dionísio</p>
+                    <a href="mailto:mjod@cesar.school" class="links"><img src="../fotos/gmail.png" alt="Gmail" class="img_gmail"></a>
+                    <a href="https://www.linkedin.com/in/maria-júlia-oliveira-dionísio-2335a13b8?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="links"><img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail"></a>
+                </div>
+                <div class="autor_linha">
+                    <p>Maria Eugênia Mateus Moraes</p>
+                    <a href="mailto:memm3@cesar.school" class="links"><img src="../fotos/gmail.png" alt="Gmail" class="img_gmail"></a>
+                    <a href="https://www.linkedin.com/in/maria-eugênia-moraes-371747413?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="links"><img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail"></a>
+                </div>
+            </div>
+            <div class="footer_dir">
+                <img src="../fotos/footer.png" alt="Imagem footer" class="img_footer_dir">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const bancoDicas = {
+            musculacao: [
+                "Sugestões de exercícios: Que tal variar com Supino Reto, Leg Press ou Prancha Abdominal?",
+                "Divisão semanal: Como você fez força hoje, amanhã foque em um treino de Cardio para descanso muscular.",
+                "Tempo de descanso: Entre as séries de força, descanse de 60 a 90 segundos."
+            ],
+            cardio: [
+                "Sugestões de exercícios: Aumente suas atividades do dia a dia -> prefira escadas ao elevador.",
+                "Divisão semanal: Comece com 3 dias na semana: 2 dias de Cardio Alternado + 1 dia de Fortalecimento.",
+                "Tempo de descanso: Mantenha descansos curtos (30 a 45 segundos) para manter batimentos altos."
+            ],
+            corrida: [
+                "Sugestões de exercícios: Iniciante na corrida? Intercale (corre 1min / anda 2min).",
+                "Divisão semanal: Pelo menos um dia focado no fortalecimento da panturrilha!",
+                "Tempo de descanso: Deixe pelo menos 48h de descanso entre treinos intensos de corrida."
+            ],
+            outros: [
+                "geral: Continue firme nos seus treinos e alimente-se bem!"
+            ]
+        };
+
+        function gerarSugestao(foco, botaoClicado) {
+            const botoes = document.querySelectorAll('.btn-opcao');
+            botoes.forEach(b => b.classList.remove('ativo'));
+            
+            botaoClicado.classList.add('ativo');
+
+            const tabelaCorpo = document.getElementById('lista-sugestoes');
+            tabelaCorpo.innerHTML = ""; 
+
+            const frases = bancoDicas[foco];
+
+            frases.forEach(frase => {
+                const partes = frase.split(':');
+                const titulo = partes[0];
+                const texto = partes[1] ? partes[1] : '';
+
+                tabelaCorpo.innerHTML += `
+                    <tr>
+                        <td>• ${titulo}:</td>
+                        <td>${texto}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('container-dicas').style.display = "block";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Metas</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="../fotos/logo.png" alt="Logo do trabalho">
+        </div>
+        <nav class="menu">
+            <a href="index.html" class="menu-item">Página Inicial</a>
+            <a href="manual.html" class="menu-item">Manual do Usuário</a>
+        </nav>
+    </header>
+
+    <main class="resumo_site">
+        <h2 class="titulo_resumo_site">
+            Controle de metas
+        </h2>
+        <p class="texto_resumo_site">
+            Cadastre suas metas e mantenha controle delas. Atualize seu progresso e, ao finalizar, receba recompenas pelo trabalho duro.
+        </p>
+
+        <div class="container-topo">
+            <button class="botao_treino" onclick="clicouNovaMeta()">+ Criar Nova Meta</button>
+        </div>
+
+        <div id="caixa-pergunta" class="box-meta-dinamica" style="display: none;">
+            <h3 class="subtitulo-form">Selecione o tipo de meta: </h3>
+            <div class="botoes-alinhados">
+                <button class="btn-opcao-tipo" onclick="escolheuTipo('exercicio')">Exercício</button>
+                <button class="btn-opcao-tipo" onclick="escolheuTipo('alimentacao')">Alimentação</button>
+            </div>
+        </div>
+
+        <div id="form-exercicio" class="box-meta-dinamica" style="display: none;">
+            <h3 class="subtitulo-form">
+                Nova meta de exercício
+            </h3>
+            <div class="campo-grupo">
+                <label for="meta-ex-nome">
+                    Digite sua meta:
+                </label>
+                <input type="text" id="meta-ex-nome">
+            </div>
+            <div class="campo-grupo">
+                <label for="meta-ex-tempo">
+                    Duração total (em quantidade de dias):
+                </label>
+                <input type="number" id="meta-ex-tempo">
+            </div>
+            <button class="btn-salvar" onclick="adicionarMetaNaLista('exercicio')">
+                Salvar Meta
+            </button>
+        </div>
+
+        <div id="form-alimentacao" class="box-meta-dinamica" style="display: none;">
+            <h3 class="subtitulo-form">
+                Nova meta de alimentação</h3>
+            <div class="campo-grupo">
+                <label for="meta-al-nome">
+                    Digite sua meta:
+                </label>
+                <input type="text" id="meta-al-nome">
+            </div>
+            <div class="campo-grupo">
+                <label for="meta-al-tempo">
+                    Duração:
+                </label>
+                <input type="text" id="meta-al-tempo">
+            </div>
+            <div class="campo-grupo">
+                <label for="meta-al-categoria">
+                    Selecione o que deseja evitar:
+                </label>
+                <select id="meta-al-categoria">
+                    <option value="carboidratos">
+                        Carboidratos
+                    </option>
+                    <option value="açúcar">
+                        Açúcar
+                    </option>
+                    <option value="glúten">
+                        Glúten
+                    </option>
+                    <option value="vegana">
+                        Derivados de animais
+                    </option>
+                </select>
+            </div>
+            <button class="btn-salvar" onclick="adicionarMetaNaLista('alimentacao')">
+                Salvar meta
+            </button>
+        </div>
+
+        <h3 class="titulo_resumo_site" style="margin-top: 50px; font-size: 24px;">Metas Atuais</h3>
+        <div id="lista-metas-container">
+            <p id="msg-vazia" style="font-family: 'Outfit'; margin-top: 15px; color: #666;">Nenhuma meta criada.</p>
+        </div>
+    </main>
+
+        
+
+    <footer>
+        <div class="footer_conteudo">
+            <div class="footer_esq">
+                <span class="autor_titulo">
+                    Feito por:
+                </span>
+
+                <div class="autor_linha">
+                    <p>
+                        Gabriella de Lima Albuquerque
+                    </p>
+                    <a href="mailto:gla3@cesar.com" class="links">
+                        <img src="../fotos/gmail.png" alt="Gmail" class="img_gmail">
+                    </a>
+                    <a href="https://www.linkedin.com/in/gabriellaalbq/" class="links">
+                        <img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail">
+                    </a>
+                </div>
+
+                <div class="autor_linha">
+                    <p>
+                        Manuela Brayner Medeiros de Araújo
+                    </p>
+                    <a href="mailto:mbma3@cesar.school" class="links">
+                        <img src="../fotos/gmail.png" alt="Gmail" class="img_gmail">
+                    </a>
+                    <a href="http://www.linkedin.com/in/manuelabraynermedeirosdeara%C3%BAjo" class="links">
+                        <img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail">
+                    </a>
+                </div>
+
+                <div class="autor_linha">
+                    <p>
+                        Rafaela Dubeux Godoy
+                    </p>
+                    <a href="mailto:rdg@cesar.school" class="links">
+                        <img src="../fotos/gmail.png" alt="Gmail" class="img_gmail">
+                    </a>
+                    <a href="www.linkedin.com/in/rafaela-dubeux-godoy" class="links">
+                        <img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail">
+                    </a>
+                </div>
+
+                <div class="autor_linha">
+                    <p>
+                        Milena Siqueira Araújo
+                    </p>
+                    <a href="mailto:msa4@cesar.school" class="links">
+                        <img src="../fotos/gmail.png" alt="Gmail" class="img_gmail">
+                    </a>
+                    <a href="https://www.linkedin.com/in/milenasiqueiraaraujo?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="links">
+                        <img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail">
+                    </a>
+                </div>
+
+                <div class="autor_linha">
+                    <p>
+                        Maria Júlia Oliveira Dionísio
+                    </p>
+                    <a href="mailto:mjod@cesar.school" class="links">
+                        <img src="../fotos/gmail.png" alt="Gmail" class="img_gmail">
+                    </a>
+                    <a href="https://www.linkedin.com/in/maria-júlia-oliveira-dionísio-2335a13b8?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="links">
+                        <img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail">
+                    </a>
+            </div>
+
+                <div class="autor_linha">
+                    <p>
+                        Maria Eugênia Mateus Moraes
+                    </p>
+                    <a href="mailto:memm3@cesar.school" class="links">
+                        <img src="../fotos/gmail.png" alt="Gmail" class="img_gmail">
+                    </a>
+                    <a href="https://www.linkedin.com/in/maria-eugênia-moraes-371747413?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="links">
+                        <img src="../fotos/linkedin.png" alt="linkedin" class="img_gmail">
+                    </a>
+                </div>
+            </div>
+            <div class="footer_dir">
+                <img src="../fotos/footer.png" alt="Imagem footer" class="img_footer_dir">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const frasesMotivacionais = [
+            "O único treino ruim é aquele que não aconteceu!",
+            "Pequenos progressos diários resultam em grandes resultados.",
+            "Sua única competição é quem você era ontem.",
+            "A constância vence o talento todos os dias.",
+            "Foco no processo, o resultado é consequência."
+        ];
+
+        const pratosSaudaveis = {
+            "carboidratos": "Abobrinha recheada com patinho moído e salada.",
+            "açúcar": "Mix de castanhas com lascas de coco e morangos frescos.",
+            "glúten": "Panqueca de aveia sem glúten com frango desfiado.",
+            "vegana": "Estrogonofe de cogumelos com arroz integral."
+        };
+
+        function clicouNovaMeta() {
+            esconderTudo();
+            document.getElementById('caixa-pergunta').style.display = 'block';
+        }
+
+        function escolheuTipo(tipo) {
+            document.getElementById('caixa-pergunta').style.display = 'none';
+            if (tipo === 'exercicio') {
+                document.getElementById('form-exercicio').style.display = 'block';
+            } else if (tipo === 'alimentacao') {
+                document.getElementById('form-alimentacao').style.display = 'block';
+            }
+        }
+
+        function adicionarMetaNaLista(tipo) {
+            const container = document.getElementById('lista-metas-container');
+            const msgVazia = document.getElementById('msg-vazia');
+            if (msgVazia) msgVazia.style.display = 'none';
+
+            let novoCardHTML = '';
+
+            if (tipo === 'exercicio') {
+                const nome = document.getElementById('meta-ex-nome').value || "Meta de Exercício";
+                const tempoDias = parseInt(document.getElementById('meta-ex-tempo').value) || 30;
+                
+                novoCardHTML = `
+                    <div class="card-meta card-ex">
+                        <div class="card-meta-topo" onclick="clicouAbaDesafio(this)">
+                            <strong>🏋️‍♂️ Desafio: ${nome}</strong>
+                            <span>Duração: <span class="dias-totais-alvo">${tempoDias}</span> dias</span>
+                        </div>
+                        <div class="detalhe-interativo" style="display: none;">
+                            <p class="frase-dinamica"></p>
+                            
+                            <div class="linha-progresso-container">
+                                <div class="barra-progresso">
+                                    <div class="progresso-interno" style="width: 0%"></div>
+                                </div>
+                                <button class="btn-alterar-progresso" onclick="atualizarDiasConcluidos(this, event)">Alterar Progresso</button>
+                            </div>
+                            
+                            <span class="texto-porcentagem" style="font-size: 12px; color: #666;">Progresso: 0 dias de ${tempoDias} (0% concluído)</span>
+                        </div>
+                    </div>
+                `;
+            } else if (tipo === 'alimentacao') {
+                const nome = document.getElementById('meta-al-nome').value || "Meta de Alimentação";
+                const tempo = document.getElementById('meta-al-tempo').value || "Geral";
+                const cat = document.getElementById('meta-al-categoria').value || "carboidratos";
+                const prato = pratosSaudaveis[cat] || "Salada colorida com grelhados.";
+
+                novoCardHTML = `
+                    <div class="card-meta card-al" onclick="clicouAbaAlimentacao(this)">
+                        <div class="card-meta-topo">
+                            <strong>🥗 Desafio: ${nome}</strong>
+                            <span>Duração: ${tempo}</span>
+                        </div>
+                        <div class="detalhe-interativo" style="display: none;">
+                            <p class="sugestao-titulo">💡 Prato saudável recomendado para foco em ${cat}:</p>
+                            <p class="prato-texto">${prato}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML += novoCardHTML;
+            esconderTudo();
+
+            document.getElementById('meta-ex-nome').value = '';
+            document.getElementById('meta-ex-tempo').value = '';
+            document.getElementById('meta-al-nome').value = '';
+            document.getElementById('meta-al-tempo').value = '';
+            document.getElementById('meta-al-categoria').selectedIndex = 0;
+        }
+
+        function esconderTudo() {
+            document.getElementById('caixa-pergunta').style.display = 'none';
+            document.getElementById('form-exercicio').style.display = 'none';
+            document.getElementById('form-alimentacao').style.display = 'none';
+        }
+
+        function clicouAbaDesafio(topoCard) {
+            const card = topoCard.closest('.card-meta');
+            const detalhe = card.querySelector('.detalhe-interativo');
+            const txtFrase = card.querySelector('.frase-dinamica');
+            
+            if (detalhe.style.display === 'none') {
+                detalhe.style.display = 'block';
+                const indice = Math.floor(Math.random() * frasesMotivacionais.length);
+                txtFrase.innerText = `"${frasesMotivacionais[indice]}"`;
+            } else {
+                detalhe.style.display = 'none';
+            }
+        }
+
+        function atualizarDiasConcluidos(botao, event) {
+                if (event) event.stopPropagation();
+
+                const card = botao.closest('.card-meta');
+                const diasTotais = parseInt(card.querySelector('.dias-totais-alvo').innerText);
+
+                if (card.querySelector('.input-progresso')) return;
+
+                const wrapper = document.createElement('div');
+                wrapper.style.marginTop = '10px';
+                wrapper.innerHTML = `
+                    <input 
+                        class="input-progresso"
+                        type="number" 
+                        min="0" 
+                        max="${diasTotais}" 
+                        placeholder="Dias concluídos (0–${diasTotais})"
+                        style="padding: 6px 10px; border-radius: 8px; border: 1px solid #ccc; font-family: Outfit; width: 200px;"
+                    >
+                    <button 
+                        onclick="confirmarProgresso(this, event)"
+                        style="margin-left: 8px; padding: 6px 14px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: Outfit;">
+                        Confirmar
+                    </button>
+                `;
+
+                botao.parentElement.appendChild(wrapper);
+            }
+
+            function confirmarProgresso(botao, event) {
+                if (event) event.stopPropagation();
+
+                const card = botao.closest('.card-meta');
+                const diasTotais = parseInt(card.querySelector('.dias-totais-alvo').innerText);
+                const input = card.querySelector('.input-progresso');
+                const diasFeitos = parseInt(input.value);
+
+                if (!isNaN(diasFeitos) && diasFeitos >= 0 && diasFeitos <= diasTotais) {
+                    const porcentagem = Math.round((diasFeitos / diasTotais) * 100);
+                    card.querySelector('.progresso-interno').style.width = porcentagem + '%';
+                    card.querySelector('.texto-porcentagem').innerText =
+                        `Progresso: ${diasFeitos} dias de ${diasTotais} (${porcentagem}% concluído)`;
+                    botao.parentElement.remove();
+                } else {
+                    alert(`Por favor, insira um número entre 0 e ${diasTotais}.`);
+                }
+            }
+
+        function clicouAbaAlimentacao(elemento) {
+            const detalhe = elemento.querySelector('.detalhe-interativo');
+            if (detalhe.style.display === 'none') {
+                detalhe.style.display = 'block';
+            } else {
+                detalhe.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
