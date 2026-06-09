@@ -325,3 +325,23 @@ def editar_treino(treinos):
             print("Treino inválido!")
     except ValueError:
         print("Entrada inválida!")
+
+def excluir_treino(treinos):
+    visualizar_treino(treinos)
+    if not treinos:
+        return
+    try:
+        while True:
+            num_treino = int(input("\nNúmero do treino para excluir: ")) - 1
+            try:
+                if 0 <= num_treino < len(treinos):
+                    treinos.pop(num_treino)
+                    print(" - Treino excluído!")
+                    salvar_treino(treinos)
+                    break
+                raise ValueError
+            except ValueError:
+                print(" - Treino inválido! Insira um número de um treino existente.")
+                           
+    except ValueError:
+        print(" - Entrada inválida!")
