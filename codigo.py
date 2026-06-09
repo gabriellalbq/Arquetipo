@@ -419,7 +419,7 @@ def sugestoes_personalizadas(treinos):
 
 dados_usuario = {"altura": 0.0, "peso": 0.0, "imc": 0.0, "status_imc": ""}
 
-def imc():
+def imc(treinos):
     print(" CÁLCULO DE IMC ")
     try:
         altura = float(input("Insira sua altura em metros (ex: 1.75): "))
