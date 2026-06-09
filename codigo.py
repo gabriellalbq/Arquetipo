@@ -399,3 +399,22 @@ def sugestoes_personalizadas(treinos):
         ]
         print(f" - Dica do dia: {random.choice(sugestao_musculacao)}")
     elif "cardio" in tipo_treino or "aeróbico" in tipo_treino or "emagrecimento" in tipo_treino:
+        sugestao_cardio = [ 
+            "• Sugestões de Exercícios: Aumente suas atividades do dia a dia -> prefira escadas ao elevador.",
+            "• Divisão semanal: Comece com 3 dias na semana: 2 dias de Cardio Alternado + 1 dia de Fortalecimento.",
+            "• Tempo de descanso: Mantenha descansos curtos (30 a 45 segundos) para manter batimentos altos."
+        ]
+        print(f"Dica do dia: {random.choice(sugestao_cardio)}")
+    elif "corrida" in tipo_treino:
+        sugestao_corrida = [
+            "• Sugestões de Exercícios: Iniciante na corrida? Intercale (corre 1min / anda 2min).",
+            "• Divisão semanal: Pelo menos um dia focado no fortalecimento da panturrilha!",
+            "• Tempo de descanso: Deixe pelo menos 48h de descanso entre treinos intensos de corrida."
+        ]
+        print(f"Dica do dia: {random.choice(sugestao_corrida)}")
+    else:
+        print("• Continue firme nos seus treinos e alimente-se bem!")
+
+    salvar_treino(treinos)
+
+dados_usuario = {"altura": 0.0, "peso": 0.0, "imc": 0.0, "status_imc": ""}
