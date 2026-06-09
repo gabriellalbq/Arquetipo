@@ -418,3 +418,35 @@ def sugestoes_personalizadas(treinos):
     salvar_treino(treinos)
 
 dados_usuario = {"altura": 0.0, "peso": 0.0, "imc": 0.0, "status_imc": ""}
+
+def imc():
+    print(" CÁLCULO DE IMC ")
+    try:
+        altura = float(input("Insira sua altura em metros (ex: 1.75): "))
+        peso = float(input("Digite o seu peso em quilogramas (ex: 70.5): "))
+
+        resultado_imc = peso / (altura ** 2)
+                
+        if resultado_imc < 18.5:
+            status = "Abaixo do peso"
+        elif 18.5 <= resultado_imc <= 24.9:
+            status = "Peso ideal"
+        elif 25 <= resultado_imc <= 29.9:
+            status = "Sobrepeso"
+        elif 30 <= resultado_imc <= 40:
+            status = "Obesidade"
+        else:
+            status = "Obesidade mórbida"
+
+        print(f"\nSeu IMC é: {resultado_imc:.1f}. Você está em estado de: {status}!")
+        
+        
+        dados_usuario["altura"] = altura
+        dados_usuario["peso"] = peso
+        dados_usuario["imc"] = resultado_imc
+        dados_usuario["status_imc"] = status
+        
+        salvar_treino(treinos)
+
+    except ValueError:
+        print(" - Erro: Digite números válidos usando pontos em vez de vírgula!")
