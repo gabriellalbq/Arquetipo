@@ -345,3 +345,38 @@ def excluir_treino(treinos):
                            
     except ValueError:
         print(" - Entrada inválida!")
+
+def exibir_evolucao_pessoal(treinos):
+    print("\n-----📈 EVOLUÇÃO PESSOAL 📉-----")
+    if not treinos:
+        print(" - Sem dados suficientes! Adicione treinos primeiro.")
+        return
+    
+    total_treinos = len(treinos)
+    print(f"• Total de treinos realizados: {total_treinos}")
+    
+    soma_progresso = 0
+    total_metas = 0
+    for t in treinos:
+        if "metas" in t:
+            for m in t["metas"]:
+                soma_progresso += m["Progresso"]
+                total_metas += 1
+                
+    if total_metas > 0:
+        media_progresso = soma_progresso / total_metas
+        print(f"• Progresso médio das suas metas: {media_progresso:.1f}%")
+    else:
+        print("• Progresso de metas: Nenhuma meta vinculada aos treinos cadastrados.")
+    
+    datas = []
+    for t in treinos:
+        try:
+            d = datetime.datetime.strptime(t["data"], "%d/%m/%Y")
+            datas.append(d)
+        except:
+            continue
+            
+    print(f"• Dias ativos com registro no Arquétipor: {len(treinos)} dia(s)")
+    
+    salvar_treino(treinos)
