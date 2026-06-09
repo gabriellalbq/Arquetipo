@@ -189,3 +189,47 @@ def salvar_treino(treinos):
             arquivo.write(f"• Peso: {dados_usuario['peso']:.1f}kg\n")
             arquivo.write(f"• IMC: {dados_usuario['imc']:.1f}\n")
             arquivo.write(f"• Status: {dados_usuario['status_imc']}\n")
+
+def adicionar_treino(treinos):
+    print("\n--- Novo Treino ---")
+    nome = input("Nome do treino: ")
+    tipo = input("Tipo (Musculação/Cardio/Funcional/Corrida): ")
+
+    while True:
+        data = input("Digite a data (dd/mm/aaaa): ")
+        try:
+            if len(data) == 10 and data[2] == "/" and data[5] == "/":
+                dia = int(data[0:2])
+                mes = int(data[3:5])
+                ano = int(data[6:10])
+                break
+            raise ValueError
+        except ValueError:
+            print(" - Erro: Certifique-se de usar dd/mm/aaaa!")
+    
+    while True:
+        duracao_input = input("Duração (min): ")
+        try:
+            duracao = int(duracao_input)
+            if duracao <= 0:
+                raise ValueError
+            break 
+        except ValueError:
+            print(" - Erro: Por favor, digite apenas números inteiros maiores que zero!")
+            
+    objetivo = input("Objetivo: ")
+    exercicio_treino = cadastrar_exercicio()
+
+    meta_treino = []    
+    pergunta_meta = input("\nDeseja adicionar uma meta para este treino agora? (sim/não): ").lower().strip()
+    if pergunta_meta == 'sim':
+        controle_metas(meta_treino)
+    
+    treino = {
+        "nome": nome, "tipo": tipo, "data": data,
+        "duracao": duracao, "objetivo": objetivo, 
+        "exercicios": exercicio_treino, "metas": meta_treino
+    }
+    treinos.append(treino)
+    print("\n - Treino adicionado com sucesso!")
+    salvar_treino(treinos)
